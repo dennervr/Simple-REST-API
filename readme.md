@@ -22,7 +22,7 @@ Este projeto é uma API REST simples criada com Express e Prisma. Desenvolvido c
 2. Entre na pasta do projeto.
 3. Ative o pnpm com o Corepack: corepack enable
 4. Instale as dependências com pnpm install.
-5. Copie o arquivo ".env.example" e renomeie para ".env".
+5. Duplique o arquivo ".env.example" e renomeie para ".env".
 6. Inicie a API com pnpm start.
 
 ## Uso
