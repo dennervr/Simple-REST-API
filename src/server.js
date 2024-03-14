@@ -9,6 +9,11 @@ const app = express();
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin")
+  next()
+})
+
 // Middleware para capturar erros do Zod
 const errorHandler = (err, req, res, next) => {
   if (err instanceof Error && err.issues) {
