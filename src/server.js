@@ -1,6 +1,8 @@
 import express from "express";
+import cors from "cors"
 import { UserSchema } from "./schemas/user.js";
 import { UserService } from "./services/user.service.js";
+import { errorHandler } from "./lib/error-handler.js";
 
 const PORT = process.env.PORT || 3000;
 const userService = new UserService();
@@ -8,26 +10,7 @@ const userService = new UserService();
 const app = express();
 
 app.use(express.json());
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin")
-  next()
-})
-
-// Middleware para capturar erros do Zod
-const errorHandler = (err, req, res, next) => {
-  if (err instanceof Error && err.issues) {
-    console.error("Erro de validação:", err.issues);
-    const formattedErrors = err.issues.map(issue => ({
-      validation: issue.validation,
-      message: issue.message,
-      path: issue.path.join('.')
-    }));
-    return res.status(400).json({ message: "Erro de validação", errors: formattedErrors });
-  }
-  next(err);
-};
-
+app.use(cors())
 app.use(errorHandler);
 
 app.listen(PORT, () => {
