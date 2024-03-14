@@ -47,6 +47,7 @@ app.post("/users", async (req, res) => {
     const data = UserSchema.create.parse(req.body);
     const user = await userService.create(data);
 
+    res.location("/users/" + user.id)
     res.status(201).json({ message: "Usuário criado com sucesso", user });
   } catch (error) {
     console.error("Erro ao criar usuário:", error);
