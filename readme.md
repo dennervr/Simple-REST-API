@@ -41,6 +41,7 @@ Corpo padrão da requisição:
 {
   "id": "int",
   "name": "string",
+  "email": "string",
   "city": "string"
 }
 ```
