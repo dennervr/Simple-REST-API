@@ -21,7 +21,7 @@ app.listen(PORT, () => {
   console.log("Server Listening on port:", PORT);
 });
 
-app.get("/users", async (req, res) => {
+app.get("/users", async (req, res, next) => {
   try {
     const users = await userService.findMany();
     return res.status(200).json(users);
@@ -31,7 +31,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-app.get("/users/:id", async (req, res) => {
+app.get("/users/:id", async (req, res, next) => {
   try {
     const { id } = UserSchema.read.parse(req.params);
     const user = await userService.findUnique(id);
@@ -45,7 +45,7 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
-app.post("/users", async (req, res) => {
+app.post("/users", async (req, res, next) => {
   try {
     const data = UserSchema.create.parse(req.body);
     const user = await userService.create(data);
@@ -58,7 +58,7 @@ app.post("/users", async (req, res) => {
   }
 });
 
-app.put("/users/:id", async (req, res) => {
+app.put("/users/:id", async (req, res, next) => {
   try {
     const data = UserSchema.update.parse({ ...req.body, ...req.params });
     const user = await userService.update(data);
