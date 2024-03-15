@@ -35,3 +35,13 @@ A API fornece endpoints para CRUD (Create, Read, Update, Delete) em um modelo de
 - /users: POST - Cria um novo usuário.
 - /users/:id: PUT - Atualiza um usuário por ID.
 - /users/:id: DELETE - Exclui um usuário por ID.
+
+Corpo padrão da requisição:
+```json
+{
+  "id": "int",
+  "name": "string",
+  "city": "string"
+}
+```
+
